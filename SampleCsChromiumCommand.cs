@@ -1,7 +1,11 @@
-﻿using Rhino;
+﻿using CefSharp.WinForms;
+using CefSharp;
+using Rhino;
 using Rhino.Commands;
 using Rhino.Input.Custom;
 using Rhino.UI;
+using System.IO;
+using System.Reflection;
 
 namespace SampleCsChromium
 {
@@ -13,9 +17,28 @@ namespace SampleCsChromium
     /// </summary>
     public SampleCsChromiumCommand()
     {
-      // Rhino only creates one instance of each command class defined in a
-      // plug-in, so it is safe to store a refence in a static property.
-      Instance = this;
+            // Rhino only creates one instance of each command class defined in a
+            // plug-in, so it is safe to store a refence in a static property.
+
+            //Cef.EnableHighDPISupport();
+
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            string assemblyPath = Path.GetDirectoryName(assemblyLocation);
+            string pathSubprocess = Path.Combine(assemblyPath, "CefSharp.BrowserSubprocess.exe");
+
+            var settings = new CefSettings();
+            settings.BrowserSubprocessPath = pathSubprocess;            
+
+
+            //the following setting is added to support Rhino 5.
+            // With versions of CefSharp > 47.0.3, the content is rendered on 1/4 of the control area.
+            // This setting fixes this, but at the consequence of disabling WebGL. 
+            // If you need WebGL in CefSharp and are targeting Rhino 5, use CefSharp 47.0.3 without this setting.
+            settings.DisableGpuAcceleration();
+
+                Cef.Initialize(settings);
+
+            Instance = this;
     }
 
     /// <summary>
