@@ -39,7 +39,7 @@ namespace SampleCsChromium
 
 
 
-            m_browser = new ChromiumWebBrowser(@"C:\Users\krahimzadeh\OneDrive - Grimshaw Architects\Desktop\RhinoWiki\test.html");
+            m_browser = new ChromiumWebBrowser(@"C:\Users\krahimzadeh\OneDrive - Grimshaw Architects\Desktop\GrimshawDT-Rhino\00_publish\grimshaw-dt.html");
 
             var size = new System.Drawing.Size()
             {

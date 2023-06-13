@@ -32,7 +32,7 @@
     protected override Rhino.PlugIns.LoadReturnCode OnLoad(ref string errorMessage)
     {
       var panel_type = typeof(SampleCsChromiumPanelControl);
-      Rhino.UI.Panels.RegisterPanel(this, panel_type, "Chromium", Properties.Resources.SampleCsChromium);
+      Rhino.UI.Panels.RegisterPanel(this, panel_type, "Grimshaw DT", Properties.Resources.DT_Logo1);
       return Rhino.PlugIns.LoadReturnCode.Success;
     }
 
